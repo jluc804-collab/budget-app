@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+  import CSVImport from './Components/CSVImport';
+  import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  function App() {
+    const [transactions, setTransactions] = useState([]);
+    const [view, setView] = useState('import');
 
-export default App;
+    return (
+      <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+        <h1>Budget App</h1>
+        <nav style={{ marginBottom: '20px' }}>
+          <button onClick={() => setView('import')} style={{ marginRight: '10px' }}>Import</button>
+        </nav>
+        {view === 'import' && <CSVImport setTransactions={setTransactions} transactions={transactions} />}
+      </div>
+    );
+  }
+
+  export default App;
